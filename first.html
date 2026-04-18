@@ -2,63 +2,106 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>HACK — Hardware Club, KUET</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HACK Portfolio — Hardware Club, KUET</title>
+    <link rel="stylesheet" href="lab02.css">
 </head>
 <body>
+<main class="container">
+    <section class="panel hero">
+        <div class="top-actions">
+            <span class="badge">Engineering Portfolio Profile</span>
+            <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle theme">Light Mode</button>
+        </div>
+        <h1><span class="section-icon" aria-hidden="true">⚡</span>HACK</h1>
+        <p><strong>Khulna University of Engineering &amp; Technology (KUET)</strong></p>
+        <p class="tagline">Hardware &amp; embedded systems club — we build circuits, prototypes, and real things you can touch.</p>
+        <div class="cta-row">
+            <a class="btn btn-primary" href="#join">Join Now</a>
+            <a class="btn btn-secondary" href="#projects">View Projects</a>
+        </div>
+    </section>
 
-<h1>HACK</h1>
-<p><strong>Khulna University of Engineering &amp; Technology (KUET)</strong></p>
-<p>Hardware &amp; embedded systems club — we build circuits, prototypes, and real things you can touch.</p>
+    <section class="grid">
+        <article class="panel">
+            <h2><span class="section-icon" aria-hidden="true">🏛️</span>About HACK</h2>
+            <p>HACK is a student-led club at KUET focused on <strong>hardware</strong>: PCBs, microcontrollers, sensors, robotics basics, and hands-on electronics workshops. We learn by soldering, wiring, debugging, and shipping small projects together.</p>
+        </article>
 
-<hr>
+        <article class="panel">
+            <h2><span class="section-icon" aria-hidden="true">🎯</span>Who it is for</h2>
+            <p>Anyone at KUET curious about <em>physical</em> tech — not only EEE majors. If you want LEDs to blink for a reason you understand, you belong here.</p>
+        </article>
+    </section>
 
-<h2>About HACK</h2>
-<p>HACK is a student-led club at KUET focused on <strong>hardware</strong>: PCBs, microcontrollers, sensors, robotics basics, and hands-on electronics workshops. We learn by soldering, wiring, debugging, and shipping small projects together.</p>
+    <section class="panel" id="projects">
+        <h2><span class="section-icon" aria-hidden="true">🛠️</span>What we do</h2>
+        <ul>
+            <li>Workshops on circuits, breadboards, and basic embedded C / Arduino-style boards</li>
+            <li>PCB design sessions and group builds</li>
+            <li>Hardware hackathons and demo days on campus</li>
+            <li>Mentoring juniors on tools, safety, and project planning</li>
+            <li>Collaboration with other tech clubs when a project needs both code and copper</li>
+        </ul>
+    </section>
 
-<hr>
+    <section class="panel">
+        <h2><span class="section-icon" aria-hidden="true">📅</span>Meetings &amp; contact (placeholder)</h2>
+        <table>
+            <tr>
+                <th>Item</th>
+                <th>Details</th>
+            </tr>
+            <tr>
+                <td>Typical meetup</td>
+                <td>Lab / seminar room — announced on club channel</td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td>hack.kuet@example.edu (replace with real address)</td>
+            </tr>
+            <tr>
+                <td>Social</td>
+                <td>Facebook group / Discord — link TBD</td>
+            </tr>
+        </table>
+    </section>
 
-<h2>What we do</h2>
-<ul>
-    <li>Workshops on circuits, breadboards, and basic embedded C / Arduino-style boards</li>
-    <li>PCB design sessions and group builds</li>
-    <li>Hardware hackathons and demo days on campus</li>
-    <li>Mentoring juniors on tools, safety, and project planning</li>
-    <li>Collaboration with other tech clubs when a project needs both code and copper</li>
-</ul>
+    <section class="panel" id="join">
+        <h2><span class="section-icon" aria-hidden="true">🚀</span>Join</h2>
+        <p>Show up to a session or message the coordinators. No prior hardware experience required — curiosity and patience help more than a full parts bin.</p>
+        <div class="cta-row">
+            <a class="btn btn-primary" href="mailto:hack.kuet@example.edu">Join Now</a>
+            <a class="btn btn-secondary" href="#projects">View Projects</a>
+        </div>
+    </section>
 
-<hr>
+    <p class="small-note">Single-page portfolio-style presentation for HACK @ KUET.</p>
+</main>
+<script>
+    (function () {
+        var themeToggle = document.getElementById("theme-toggle");
+        var root = document.documentElement;
+        var savedTheme = localStorage.getItem("theme");
 
-<h2>Who it is for</h2>
-<p>Anyone at KUET curious about <em>physical</em> tech — not only EEE majors. If you want LEDs to blink for a reason you understand, you belong here.</p>
+        if (savedTheme === "light") {
+            root.setAttribute("data-theme", "light");
+            themeToggle.textContent = "Dark Mode";
+        }
 
-<hr>
-
-<h2>Meetings &amp; contact (placeholder)</h2>
-<table border="1" cellpadding="8">
-    <tr>
-        <th>Item</th>
-        <th>Details</th>
-    </tr>
-    <tr>
-        <td>Typical meetup</td>
-        <td>Lab / seminar room — announced on club channel</td>
-    </tr>
-    <tr>
-        <td>Email</td>
-        <td>hack.kuet@example.edu (replace with real address)</td>
-    </tr>
-    <tr>
-        <td>Social</td>
-        <td>Facebook group / Discord — link TBD</td>
-    </tr>
-</table>
-
-<hr>
-
-<h2>Join</h2>
-<p>Show up to a session or message the coordinators. No prior hardware experience required — curiosity and patience help more than a full parts bin.</p>
-
-<p>— <small>Rough single-page layout for HACK @ KUET. No CSS; structure only.</small></p>
-
+        themeToggle.addEventListener("click", function () {
+            var isLight = root.getAttribute("data-theme") === "light";
+            if (isLight) {
+                root.removeAttribute("data-theme");
+                localStorage.setItem("theme", "dark");
+                themeToggle.textContent = "Light Mode";
+            } else {
+                root.setAttribute("data-theme", "light");
+                localStorage.setItem("theme", "light");
+                themeToggle.textContent = "Dark Mode";
+            }
+        });
+    }());
+</script>
 </body>
 </html>
