@@ -1,4 +1,32 @@
 (function () {
+    // Join form: show success or error after PHP redirect (?join_success=1 or ?join_error=1).
+    var joinParams = new URLSearchParams(window.location.search);
+    if (joinParams.get("join_success") === "1") {
+        var successEl = document.getElementById("join-success-msg");
+        if (successEl) {
+            successEl.hidden = false;
+        }
+        var joinSection = document.getElementById("join");
+        if (joinSection) {
+            joinSection.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+        joinParams.delete("join_success");
+        var clean = window.location.pathname + (joinParams.toString() ? "?" + joinParams.toString() : "") + "#join";
+        history.replaceState(null, "", clean);
+    } else if (joinParams.get("join_error") === "1") {
+        var errorEl = document.getElementById("join-error-msg");
+        if (errorEl) {
+            errorEl.hidden = false;
+        }
+        var joinErrSection = document.getElementById("join");
+        if (joinErrSection) {
+            joinErrSection.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+        joinParams.delete("join_error");
+        var cleanErr = window.location.pathname + (joinParams.toString() ? "?" + joinParams.toString() : "") + "#join";
+        history.replaceState(null, "", cleanErr);
+    }
+
     // Theme toggle setup.
     var themeToggle = document.getElementById("theme-toggle");
     var root = document.documentElement;
@@ -22,7 +50,7 @@
         }
     });
 
-    // Smoothly scroll  korbe jokhn noin now or view project e jabe.
+    // Smoothly scroll to in-page sections when clicking links like #projects or #join.
     var sectionLinks = document.querySelectorAll('a[href^="#"]');
     sectionLinks.forEach(function (link) {
         link.addEventListener("click", function (event) {
@@ -59,13 +87,13 @@
         button.addEventListener("click", function () {
             var selectedFilter = button.getAttribute("data-filter");
 
-            // jeta filter korbo ota show korbe .
+            // Update visual active state on filter buttons.
             filterButtons.forEach(function (btn) {
                 btn.classList.remove("active");
             });
             button.classList.add("active");
 
-            // all e thakle shob card show korbe.
+            // Show all cards for "all", otherwise show cards matching selected category.
             projectCards.forEach(function (card) {
                 var categories = card.getAttribute("data-categories");
                 var categoryList = categories ? categories.split(",") : [];
@@ -81,7 +109,7 @@
     });
 
     // Back-to-top setup.
-    // click korle smoothly upore jabe.
+    // Show button after scrolling down, and smoothly return to top when clicked.
     var backToTopButton = document.getElementById("back-to-top");
 
     function updateBackToTopVisibility() {
