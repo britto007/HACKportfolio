@@ -330,6 +330,31 @@ tr:hover td {
     display: none;
 }
 
+.form-feedback {
+    margin-top: 14px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border: 1px solid var(--line);
+}
+
+.form-feedback--success {
+    background: rgba(50, 214, 197, 0.15);
+    border-color: rgba(50, 214, 197, 0.45);
+    color: var(--accent-2);
+}
+
+.form-feedback--error {
+    background: rgba(255, 100, 100, 0.12);
+    border-color: rgba(255, 120, 120, 0.4);
+    color: #ffb4b4;
+}
+
+:root[data-theme="light"] .form-feedback--error {
+    color: #b00020;
+}
+
 .join-form {
     margin-top: 16px;
     display: grid;
@@ -366,7 +391,7 @@ tr:hover td {
     transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
 }
 
-/* Keep dropdown text black rakhbo. */
+/* Keep dropdown text black and match its background to the site theme. */
 .form-field select {
     color: #000;
     background: #fff;
