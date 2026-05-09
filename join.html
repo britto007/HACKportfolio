@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join HACK — KUET</title>
+    <link rel="stylesheet" href="lab02.css">
+</head>
+<body>
+<main class="container">
+    <section class="panel hero">
+        <div class="top-actions">
+            <span class="badge">Membership</span>
+            <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle theme">Light Mode</button>
+        </div>
+        <nav class="site-nav" aria-label="Primary">
+            <a class="site-nav-link" href="lab02.html">Home</a>
+            <a class="site-nav-link active" href="join.html">Join Now</a>
+            <a class="site-nav-link" href="meetings.html">Meetings</a>
+            <a class="site-nav-link" href="contacts.html">Contacts</a>
+        </nav>
+        <h1><span class="section-icon" aria-hidden="true">🚀</span>Join HACK</h1>
+        <p class="tagline">No prior hardware experience required. If you are curious and ready to learn, you are welcome.</p>
+    </section>
+
+    <section class="panel" id="join">
+        <h2><span class="section-icon" aria-hidden="true">🧾</span>Membership Form</h2>
+        <p>Fill in this form and the HACK team will contact you with the next orientation details.</p>
+        <p id="join-success-msg" class="form-feedback form-feedback--success" role="status" hidden>
+            Your join request was submitted successfully. We will get back to you soon.</p>
+        <p id="join-error-msg" class="form-feedback form-feedback--error" role="alert" hidden>
+            Something was missing or invalid. Please fill every field correctly and try again.</p>
+        <form class="join-form" action="join-process.php" method="post">
+            <div class="form-grid">
+                <div class="form-field">
+                    <label for="join-name">Full Name</label>
+                    <input id="join-name" name="fullName" type="text" placeholder="Your full name" required>
+                </div>
+                <div class="form-field">
+                    <label for="join-email">Email</label>
+                    <input id="join-email" name="email" type="email" placeholder="you@example.com" required>
+                </div>
+                <div class="form-field">
+                    <label for="join-dept">Department</label>
+                    <input id="join-dept" name="department" type="text" placeholder="EEE / CSE / ME / Other" required>
+                </div>
+                <div class="form-field">
+                    <label for="join-interest">Primary Interest</label>
+                    <select id="join-interest" name="interest" required>
+                        <option value="">Select one</option>
+                        <option value="iot">IoT</option>
+                        <option value="robotics">Robotics</option>
+                        <option value="ai-ml">AI/ML</option>
+                        <option value="embedded">Embedded Systems</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-field">
+                <label for="join-message">Why do you want to join?</label>
+                <textarea id="join-message" name="message" rows="4" placeholder="A short message..." required></textarea>
+            </div>
+            <button class="btn btn-primary" type="submit">Submit Join Request</button>
+        </form>
+    </section>
+
+    <p class="small-note">HACK @ KUET Membership Portal.</p>
+</main>
+<button id="back-to-top" class="back-to-top" type="button" aria-label="Back to top">↑ Top</button>
+<script src="lab02.js"></script>
+</body>
+</html>
