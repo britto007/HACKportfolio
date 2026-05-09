@@ -1,5 +1,6 @@
 (function () {
-    // Join form: show success or error after PHP redirect (?join_success=1 or ?join_error=1).
+    // php theke join success ba error shoho redirect korar por URL query 
+    // parameter check kore message show kora, tarpor URL clean kora.
     var joinParams = new URLSearchParams(window.location.search);
     if (joinParams.get("join_success") === "1") {
         var successEl = document.getElementById("join-success-msg");
@@ -8,15 +9,15 @@
         }
         var joinSection = document.getElementById("join");
         if (joinSection) {
-            joinSection.scrollIntoView({ behavior: "smooth", block: "start" });
+            joinSection.scrollIntoView({behavior: "smooth", block: "start"});
         }
         joinParams.delete("join_success");
-        var clean = window.location.pathname + (joinParams.toString() ? "?" + joinParams.toString() : "") + "#join";
-        history.replaceState(null, "", clean);
-    } else if (joinParams.get("join_error") === "1") {
+        var clean=window.location.pathname +(joinParams.toString() ? "?" + joinParams.toString() : "") + "#join";
+        history.replaceState(null, "",clean);
+    } else if (joinParams.get("join_error") ==="1") {
         var errorEl = document.getElementById("join-error-msg");
         if (errorEl) {
-            errorEl.hidden = false;
+            errorEl.hidden=false;
         }
         var joinErrSection = document.getElementById("join");
         if (joinErrSection) {
@@ -34,21 +35,25 @@
 
     if (savedTheme === "light") {
         root.setAttribute("data-theme", "light");
-        themeToggle.textContent = "Dark Mode";
-    }
-
-    themeToggle.addEventListener("click", function () {
-        var isLight = root.getAttribute("data-theme") === "light";
-        if (isLight) {
-            root.removeAttribute("data-theme");
-            localStorage.setItem("theme", "dark");
-            themeToggle.textContent = "Light Mode";
-        } else {
-            root.setAttribute("data-theme", "light");
-            localStorage.setItem("theme", "light");
+        if (themeToggle) {
             themeToggle.textContent = "Dark Mode";
         }
-    });
+    }
+
+    if (themeToggle) {
+        themeToggle.addEventListener("click", function () {
+            var isLight = root.getAttribute("data-theme") === "light";
+            if (isLight) {
+                root.removeAttribute("data-theme");
+                localStorage.setItem("theme", "dark");
+                themeToggle.textContent = "Light Mode";
+            } else {
+                root.setAttribute("data-theme", "light");
+                localStorage.setItem("theme", "light");
+                themeToggle.textContent = "Dark Mode";
+            }
+        });
+    }
 
     // Smoothly scroll to in-page sections when clicking links like #projects or #join.
     var sectionLinks = document.querySelectorAll('a[href^="#"]');
